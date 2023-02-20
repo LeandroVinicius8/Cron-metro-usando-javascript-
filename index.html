@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cronômetro</title>
+</head>
+<body>
+
+	<h1>cronometro</h1>
+
+	<button onclick="start()">Iniciar</button>
+	<button onclick="stop()">Parar</button>
+	<button onclick="reset()">Reiniciar</button>
+
+	<p id="timer">00:00:00</p>
+
+	<script>
+
+		var hours = 0;
+		var minutes = 0;
+		var seconds = 0;
+		var timer;
+
+		function start() {
+			timer = setInterval(function() {
+				seconds++;
+				if (seconds == 60) {
+					seconds = 0;
+					minutes++;
+					if (minutes == 60) {
+						minutes = 0;
+						hours++;
+					}
+				}
+				document.getElementById('timer').innerHTML = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+			}, 1000);
+		}
+
+		function stop() {
+			clearInterval(timer);
+		}
+
+		function reset() {
+			clearInterval(timer);
+			hours = 0;
+			minutes = 0;
+			seconds = 0;
+			document.getElementById('timer').innerHTML = "00:00:00";
+		}
+
+	</script>
+
+</body>
+</html>
